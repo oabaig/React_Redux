@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
+import LoadingIcon from './LoadingIcon';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = { latitude: null, errorMessage: '' };
-	}
+	state = { lat: null, errorMessage: '' };
 
 	componentDidMount() {
 		window.navigator.geolocation.getCurrentPosition(
@@ -15,16 +13,20 @@ class App extends React.Component {
 		);
 	}
 
-	render() {
+	renderContent() {
 		if (this.state.errorMessage && !this.state.latitude) {
 			return <div>Error: {this.state.errorMessage}</div>;
 		}
 
 		if (!this.state.errorMessage && this.state.latitude) {
-			return <div>Latitude: {this.state.latitude}</div>;
+			return <SeasonDisplay latitude={this.state.latitude} />;
 		}
 
-		return <div>Loading...</div>;
+		return <LoadingIcon message="Please accept location request" />;
+	}
+
+	render() {
+		return <div className="border red">{this.renderContent()}</div>;
 	}
 }
 
