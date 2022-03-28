@@ -1,10 +1,18 @@
+import './videoitem.css';
 import React from 'react';
+import DecodeHTMLEntities from '../helper functions/helpers';
 
-const VideoItem = (props) => {
+const VideoItem = ({ video, OnVideoSelect }) => {
 	return (
-		<div>
-			<img src={props.video.snippet.thumbnails.medium.url} alt={props.video.snippet.title} />
-			{props.video.snippet.title}
+		<div onClick={() => OnVideoSelect(video)} className="video-item item">
+			<img
+				src={video.snippet.thumbnails.medium.url}
+				alt={video.snippet.title}
+				className="ui image"
+			/>
+			<div className="content">
+				<div className="header">{DecodeHTMLEntities(video.snippet.title)}</div>
+			</div>
 		</div>
 	);
 };
