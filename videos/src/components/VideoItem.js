@@ -1,7 +1,12 @@
 import React from 'react';
 
 const VideoItem = (props) => {
-	return <div>Video Item</div>;
+	return (
+		<div>
+			<img src={props.video.snippet.thumbnails.medium.url} alt={props.video.snippet.title} />
+			{props.video.snippet.title}
+		</div>
+	);
 };
 
 export default VideoItem;
