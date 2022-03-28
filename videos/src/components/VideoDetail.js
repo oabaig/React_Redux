@@ -2,7 +2,15 @@ import React from 'react';
 import DecodeHTMLEntities from '../helper functions/helpers';
 
 const VideoDetail = ({ video }) => {
-	if (!video) return <></>;
+	if (!video)
+		return (
+			<div>
+				<div class="ui active inverted dimmer">
+					<div class="ui text loader">Loading</div>
+				</div>
+				<p></p>
+			</div>
+		);
 
 	const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
 
